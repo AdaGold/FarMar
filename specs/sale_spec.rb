@@ -2,29 +2,47 @@ require_relative './spec_helper'
 require_relative '../far_mar'
 #require_relative '../sale'
 
+describe FarMar::Sale do
+  it "exists" do
+    FarMar::Sale.wont_be_nil
+  end
+end
 
 describe FarMar::Sale do
     before do
       market_data = {
         id: 1
       }
-      @market = FarMar::Sale.new(market_data)
+      @sales = FarMar::Sale.new(market_data)
     end
 
-    it "it creates a new Market instance" do
-    @market.must_be_instance_of(FarMar::Sale)
+    it "it creates a new Sale instance" do
+    @sales.must_be_instance_of(FarMar::Sale)
     end
   end
 
   describe "SelfAll" do
     before do
-      market_data = {
-          id: 1,
-          name: "Black Bottle Lounge"
-      }
-      @markets = FarMar::Product.new(market_data)
+      @sales = FarMar::Sale.all # all is a self class
     end
+
+    it "returns an array" do
+      @sales.must_be_instance_of(Array)
+    end
+
     it "returns a collection of instances from the CSV file" do
-      @markets.must_equal.(market_data)
+      @sales[0].must_be_instance_of(FarMar::Sale)
+    end
+  end
+
+  describe "SelfFindMethod" do
+    before do
+      # one instance of a sales class with an id value of one
+      # this is an actual sales
+      @one_sale = FarMar::Sale.find(1)
+    end
+
+    it "returns an instance of sales" do
+      @one_sale.must_be_instance_of(FarMar::Sale)
     end
   end

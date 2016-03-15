@@ -15,23 +15,39 @@ class FarMar::Market
   end
 
   def self.all # self is the class and all is the method
-    market_array = []
+    market_collection = []
     CSV.open(FILENAME, "r") do |csv|
     csv.read.each do |line|
-      market_array << self.new( id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6] )
+      market_collection << self.new( id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6] )
     end
     end
-    return market_array
+    return market_collection
   end
 
   def self.find(id)
     all_markets = self.all
     all_markets.each do |market|
-      if market.id == id
+      while market.id == id
+        return market #an instance
       end
-      return market #an instance 
     end
+    return nil
   end
 
+  def vendors
+  # one market has an id.
+  # many vendors can have one specific market_id
+    all_vendors = FarMar::Vendor.all # list of all vendors
+    list_of_this_markets_vendors = [] # empty array
+    all_vendors.each do |vendor| # all of the vendors going through each vendor
+      if vendor.market_id == id # go to the vendors market_id and check with current instance of what the market(renton or fremont) id
+        list_of_this_markets_vendors << vendor
+      end
+    end
+    return list_of_this_markets_vendors
+    # all_vendors.select do |vendor| #
+    # vendor.market_id == id
+    # end
+  end
 
 end
