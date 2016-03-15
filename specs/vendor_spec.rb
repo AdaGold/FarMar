@@ -1,46 +1,55 @@
 require_relative './spec_helper'
-require_relative '../far_mar'
-#require_relative '../vendor'
+
+
+
 describe FarMar::Vendor do
   it "exists" do
     FarMar::Vendor.wont_be_nil
   end
-end 
+end
+
 describe FarMar::Vendor do
-    before do
-      market_data = {
-        id: 1
-      }
-      @vendor = FarMar::Vendor.new(market_data)
-    end
+  let(:vendor) { FarMar::Vendor.new(id: 10) }
 
     it "it creates a new Vendor instance" do
-    @vendor.must_be_instance_of(FarMar::Vendor)
+    vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
-  describe "SelfAll" do
-    before do
-      @vendor = FarMar::Vendor.all # all is a self class
+  describe "Self.All" do
+    # before do
+    #   @vendor = FarMar::Vendor.all # all is a self class
+    # end
+    let(:vendor) { FarMar::Vendor.all}
+
+    it "returns an array of FarMar::Vendor instances" do
+      vendor.must_be_instance_of(Array)
     end
 
-    it "returns an array" do
-      @vendor.must_be_instance_of(Array)
-    end
-
-    it "returns a collection of instances from the CSV file" do
-      @vendor[0].must_be_instance_of(FarMar::Vendor)
+    it "return a collection of instances from the CSV file in FarMar:Vendor" do
+      classes = FarMar::Vendor.all.map { |v| v.class }
+      classes.uniq.must_equal([FarMar::Vendor])
     end
   end
 
-  describe "SelfFindMethod" do
-    before do
-      # one instance of a vendor class with an id value of one
-      # this is an actual vendor
-      @one_vendor = FarMar::Vendor.find(1)
+  describe "Self.Find" do
+    # one instance of a vendor class with an id value of one
+    # this is an actual vendor
+    let(:vendor) { FarMar::Vendor.find(1) }
+
+    it "returns a collection of FarMar::Vendor instances of id" do
+      vendor.must_be_instance_of(FarMar::Vendor)
     end
 
-    it "returns an instance of vendor" do
-      @one_vendor.must_be_instance_of(FarMar::Vendor)
+    it "returns nil for markets it does not find" do
+      FarMar::Vendor.find(610).must_equal(nil)
     end
   end
+
+describe "Market" do
+  let(:vendor) { FarMar::Vendor.find(3) }
+
+  it "returns an array" do
+    vendor.Market.must_be_instance_of(Array)
+  end 
+end

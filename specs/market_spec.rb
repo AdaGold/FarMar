@@ -1,6 +1,5 @@
 require_relative './spec_helper'
-#require_relative '../far_mar'
-#require_relative '../market'
+
 
 describe FarMar::Market do
   it "exists" do
@@ -9,15 +8,15 @@ describe FarMar::Market do
 end
 
 describe FarMar::Market do
-  before do
-    market_data = {
-      id: 1
-    }
-    @market = FarMar::Market.new(market_data)
-  end
+  let(:market) { FarMar::Market.new(market_id: 10) }
+  # before do
+  #   market_data = {
+  #     id: 1
+  #   }
+  #   @market = FarMar::Market.new(market_data)
 
   it "it creates a new Market instance" do
-  @market.must_be_instance_of(FarMar::Market)
+  market.must_be_instance_of(FarMar::Market)
   end
 end
 
@@ -75,8 +74,15 @@ describe "Vendors" do
     market.vendors.must_be_instance_of(Array)
   end
 
-  it "returns a collection of FarMar::Vendor id instances" do
+  it "returns a collection of FarMar::Vendor objects" do
     #.vendors is an instance method
-    
+    vendor = market.vendors.map { |v| v.class }
+    vendor.uniq.must_equal([FarMar::Vendor])
+  end
+
+  it "returns a collection of FarMar::Vendor id instances" do
+    #.vendors is an instance method getting called on markets which was set up in this test .find(17)
+    vendor = market.vendors.map { |v| v.market_id } # this is taking the vendors associated with the market ID (17) and returning an rray of those vendors. [vendor1, vendor2] etc...
+    vendor.uniq.must_equal([market.id])# this is taking the vendors in the array and removing the duplicates and checking to see if the market_id matches the market ID
   end
 end

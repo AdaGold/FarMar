@@ -1,6 +1,5 @@
 require_relative './spec_helper'
-# require_relative '../far_mar'
-#require_relative '../product'
+
 describe FarMar::Product do
   it "exists" do
     FarMar::Product.wont_be_nil

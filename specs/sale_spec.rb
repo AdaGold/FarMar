@@ -1,6 +1,5 @@
 require_relative './spec_helper'
-require_relative '../far_mar'
-#require_relative '../sale'
+
 
 describe FarMar::Sale do
   it "exists" do
