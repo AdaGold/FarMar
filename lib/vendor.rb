@@ -42,7 +42,7 @@ class FarMar::Vendor
       all_products = FarMar::Product.all
       all_products.select do |product|
         product.vendor_id == id # this selecets and returns a collection of prodcut instances
-        end
+      end
     end
 
     # sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
@@ -67,5 +67,4 @@ class FarMar::Vendor
         vendor.market_id == market_id   # look at the vendors to see if it has a market.id if so give them to me
       end
     end
-
 end

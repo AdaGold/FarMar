@@ -12,15 +12,12 @@ end
 describe FarMar::Vendor do
   let(:vendor) { FarMar::Vendor.new(id: 10) }
 
-    it "it creates a new Vendor instance" do
+    it "it creates a new vendor instance" do
     vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
-  describe "Self.All" do
-    # before do
-    #   @vendor = FarMar::Vendor.all # all is a self class
-    # end
+  describe "self#all" do
     let(:vendor) { FarMar::Vendor.all}
 
     it "returns an array of FarMar::Vendor instances" do
@@ -33,7 +30,7 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "Self.Find" do
+  describe "self#find(id)" do
     # one instance of a vendor class with an id value of one
     # this is an actual vendor
     let(:vendor) { FarMar::Vendor.find(1) }
@@ -47,7 +44,7 @@ describe FarMar::Vendor do
     end
   end
 
-describe "Market" do
+describe "market" do
   let(:vendor) { FarMar::Vendor.find(5) }
 
   #checking to see if the type is correct:
@@ -67,7 +64,7 @@ describe "Market" do
   end
 end
 
-describe "Products" do
+describe "products" do
     let(:vendor) { FarMar::Vendor.find(4) }
 
     #checking to see if the type is correct:
@@ -87,7 +84,7 @@ describe "Products" do
     end
   end
 
-  describe "Sales" do
+  describe "sales" do
       let(:vendor) { FarMar::Vendor.find(4) }
 
       #checking to see if the type is correct:
@@ -107,7 +104,7 @@ describe "Products" do
       end
     end
 
-describe "Revenue" do
+describe "revenue" do
   let(:vendor) { FarMar::Vendor.find(14)}
 
  it "a collection of instance amount sums returned in an array" do
@@ -120,7 +117,7 @@ describe "Revenue" do
 end
 
 
-describe "Self.By_Market" do
+describe "self#by_market(market_id)" do
   let(:vendor) { FarMar::Vendor.by_market(14) }
 
   it "returns in an instance of vendors in an array" do
@@ -135,7 +132,7 @@ describe "Self.By_Market" do
   it "returns all of the vendors with the given market_id" do
     vendor.each do |v|
       v.market_id.must_equal(14)
-  end
+    end
   end
 
 end
