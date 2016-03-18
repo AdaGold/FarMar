@@ -9,11 +9,6 @@ end
 
 describe FarMar::Market do
   let(:market) { FarMar::Market.new(market_id: 10) }
-  # before do
-  #   market_data = {
-  #     id: 1
-  #   }
-  #   @market = FarMar::Market.new(market_data)
 
   it "it creates a new Market instance" do
   market.must_be_instance_of(FarMar::Market)

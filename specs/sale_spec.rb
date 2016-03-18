@@ -47,10 +47,10 @@ require_relative './spec_helper'
   end
 
 describe "FarMar::Sale#vendor" do
-  let(:sale) { FarMar::Sale.find(15) }
+  let(:sale) { FarMar::Sale.find(14) }
 
   it "return an instance of FarMar::Vendor" do
-    sale.vendor.must_be_instance_of(FarMar::Vendor)
+    sale.vendor_id.must_equal(3)
   end
 end
 
@@ -58,7 +58,7 @@ describe "FarMar::Sale#product" do
   let(:sale)  { FarMar::Sale.find(14) }
 
    it "should return an instance of FarMar::Sale#product_id" do
-     sale.product.must_equal(4)
+     sale.product_id.must_equal(4)
    end
 end
 

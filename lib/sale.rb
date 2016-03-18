@@ -30,9 +30,22 @@ class FarMar::Sale
       end
       return matched_sales #an instance
     end
+
     def vendor
-      # returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+      all_vendors = FarMar::Vendor.all
+      all_vendors.select do |vendor|
+        vendor.id == vendor_id
+      end
     end
+
+    # FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id
+    def product
+      all_products = FarMar::Product.all
+      all_products.select do |product|
+        product.id == product_id
+      end
+    end
+
 
     def self.between(beginning_time, end_time)
       # beginning_time = Time.parse(beginning_time)
