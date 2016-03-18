@@ -27,7 +27,7 @@ class FarMar::Market
   def self.find(id)
     all_markets = self.all
     all_markets.each do |market|
-      while market.id == id
+      if market.id == id
         return market #an instance
       end
     end
@@ -49,5 +49,7 @@ class FarMar::Market
     # vendor.market_id == id
     # end
   end
+
+
 
 end

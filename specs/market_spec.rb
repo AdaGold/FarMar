@@ -69,17 +69,18 @@ describe "Vendors" do
   #     name: "Hamill, Kilback and Pfeffer"
   #   }
     # @a = FarMar::Market.new(list_vendors)
+    # checking to see if correct type:
   it "returns a collection of FarMar::Vendor id instances in an array" do
     # return an Array of vendor instances(FarMar::Market)
     market.vendors.must_be_instance_of(Array)
   end
-
+  # checking if the objects in Array are correct:
   it "returns a collection of FarMar::Vendor objects" do
     #.vendors is an instance method
     vendor = market.vendors.map { |v| v.class }
     vendor.uniq.must_equal([FarMar::Vendor])
   end
-
+  #checking to see if a vendor object contains the data I am giving it( checking properties on a vendor object)
   it "returns a collection of FarMar::Vendor id instances" do
     #.vendors is an instance method getting called on markets which was set up in this test .find(17)
     vendor = market.vendors.map { |v| v.market_id } # this is taking the vendors associated with the market ID (17) and returning an rray of those vendors. [vendor1, vendor2] etc...
