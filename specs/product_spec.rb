@@ -44,3 +44,26 @@ describe FarMar::Product do
       @one_sale.must_be_instance_of(FarMar::Sale)
     end
   end
+
+describe "FarMar::Product#vendor" do
+  let(:product) { FarMar::Product.find(10) }
+
+  it "returns FarMar::Vendor intances that are associated with the product id" do
+    product.vendor.must_equal()
+  end
+end
+
+describe "FarMar::Product#sales" do
+  let(:prduct) { FarMar::Product.find(10)}
+
+  it "returns a collection of FarMar::Sale instances" do
+    product.sales.must_equal()
+  end
+end
+
+describe "FarMar::Product#numberofsales" do
+  let(:product) { FarMar::Product.find(5) }
+
+  it "returns the number of times this product has been sold." do
+    product.numberofsales.must_equal()
+  end
